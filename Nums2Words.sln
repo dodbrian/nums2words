@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nums2Words.Web", "Nums2Words.Web\Nums2Words.Web.csproj", "{A02E6D04-981C-4256-A1B0-F90786A0C326}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nums2Words.Domain", "Nums2Words.Domain\Nums2Words.Domain.csproj", "{4A691098-851B-4F49-85DE-DB60586743C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nums2Words.Tests", "Nums2Words.Tests\Nums2Words.Tests.csproj", "{245C805A-27E5-4915-B12C-5B6C3F7C7528}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{A02E6D04-981C-4256-A1B0-F90786A0C326}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A02E6D04-981C-4256-A1B0-F90786A0C326}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A02E6D04-981C-4256-A1B0-F90786A0C326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A691098-851B-4F49-85DE-DB60586743C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A691098-851B-4F49-85DE-DB60586743C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A691098-851B-4F49-85DE-DB60586743C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A691098-851B-4F49-85DE-DB60586743C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245C805A-27E5-4915-B12C-5B6C3F7C7528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245C805A-27E5-4915-B12C-5B6C3F7C7528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245C805A-27E5-4915-B12C-5B6C3F7C7528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245C805A-27E5-4915-B12C-5B6C3F7C7528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
