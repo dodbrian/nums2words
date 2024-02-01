@@ -45,18 +45,23 @@ public static class NumberToWordsConverter
         var integral = (int)number;
         var fractional = (int)((number - integral) * 100);
 
-        var dollars = ConvertInternal(integral);
-        var cents = ConvertInternal(fractional);
+        var builder = new StringBuilder();
+        if (fractional != 0)
+        {
+            builder.Append(fractional == 1 ? " cent" : " cents");
+            ConvertInternal(fractional, builder);
+            builder.Insert(0, " and");
+        }
 
-        return $"{dollars} dollars and {cents} cents";
+        builder.Insert(0, integral == 1 ? " dollar" : " dollars");
+        ConvertInternal(integral, builder);
+
+        return builder.ToString().Trim();
     }
 
-    private static string ConvertInternal(int number)
+    private static void ConvertInternal(int number, StringBuilder builder)
     {
-        if (number == 0m) return Map[0];
-
-        var builder = new StringBuilder();
-        var stack = new Stack<string>();
+        if (number == 0m) builder.Insert(0, Map[0]);
 
         var iteration = 0;
         foreach (var (low, high) in Step(number))
@@ -67,39 +72,42 @@ public static class NumberToWordsConverter
                 continue;
             }
 
-            if (iteration > 0) stack.Push(Magnitude[iteration - 1]);
+            if (iteration > 0)
+            {
+                builder.Insert(0, Magnitude[iteration - 1]);
+                builder.Insert(0, ' ');
+            }
 
-            if (low != 0) AppendWord(low, stack);
+            if (low != 0) AppendWord(low, builder);
             if (high != 0)
             {
-                stack.Push(Hundred);
-                AppendWord(high, stack);
+                builder.Insert(0, Hundred);
+                builder.Insert(0, ' ');
+                AppendWord(high, builder);
             }
 
             iteration++;
         }
-
-        while (stack.Count != 0)
-        {
-            var word = stack.Pop();
-            builder.Append(word);
-            builder.Append(' ');
-        }
-
-        return builder.ToString().Trim();
     }
 
-    private static void AppendWord(int number, Stack<string> stack)
+    private static void AppendWord(int number, StringBuilder builder)
     {
         if (number < 20)
-            stack.Push(Map[number]);
+            builder.Insert(0, Map[number]);
         else
         {
             var low = number % 10;
-            if (low != 0) stack.Push(Map[low]);
+            if (low != 0)
+            {
+                builder.Insert(0, Map[low]);
+                builder.Insert(0, '-');
+            }
+
             var high = number - low;
-            stack.Push(Map[high]);
+            builder.Insert(0, Map[high]);
         }
+
+        builder.Insert(0, ' ');
     }
 
     private static IEnumerable<(int Low, int High)> Step(int number)
