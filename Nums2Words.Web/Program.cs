@@ -1,8 +1,11 @@
+using Nums2Words.AppServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<MoneyConverterService>();
 
 var app = builder.Build();
 
