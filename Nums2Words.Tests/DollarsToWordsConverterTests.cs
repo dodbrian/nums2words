@@ -2,7 +2,7 @@ using Nums2Words.Domain;
 
 namespace Nums2Words.Tests;
 
-public class NumberToWordsConverterTests
+public class DollarsToWordsConverterTests
 {
     [Theory]
     [InlineData(0, "zero dollars")]
@@ -21,7 +21,7 @@ public class NumberToWordsConverterTests
     public void Should_return_correct_wording_for_number(decimal number, string words)
     {
         // Arrange
-        var converter = new NumberToWordsConverter();
+        var converter = new DollarsToWordsConverter();
 
         // Act
         var result = converter.Convert(number);
@@ -36,7 +36,7 @@ public class NumberToWordsConverterTests
     public void Should_throw_if_number_is_outside_the_range(decimal number)
     {
         // Arrange
-        var converter = new NumberToWordsConverter();
+        var converter = new DollarsToWordsConverter();
 
         // Act
         Action act = () => converter.Convert(number);

@@ -2,7 +2,7 @@
 
 namespace Nums2Words.Domain;
 
-public class NumberToWordsConverter
+public class DollarsToWordsConverter
 {
     private static readonly Dictionary<int, string> Map = new()
     {
@@ -42,16 +42,16 @@ public class NumberToWordsConverter
     private StringBuilder? _builder;
 
     /// <summary>
-    /// Converts a decimal number to its textual representation in words.
+    /// Converts a decimal amount of dollars to its textual representation in words.
     /// </summary>
-    /// <param name="number">The decimal number to convert.</param>
+    /// <param name="money">The decimal number to convert.</param>
     /// <returns>The textual representation of the number in words.</returns>
     /// <exception cref="InvalidOperationException">
     /// Thrown if the absolute value of the number is higher than 999,999,999.99.
     /// </exception>
-    public string Convert(decimal number)
+    public string Convert(decimal money)
     {
-        var absoluteNumber = Math.Abs(number);
+        var absoluteNumber = Math.Abs(money);
 
         if (absoluteNumber > 999_999_999.99m)
             throw new InvalidOperationException("The absolute value should not be higher than 999,999,999.99");
@@ -64,24 +64,24 @@ public class NumberToWordsConverter
         if (fractional != 0)
         {
             _builder.Append(fractional == 1 ? " cent" : " cents");
-            ConvertInternal(fractional);
+            ConvertInteger(fractional);
             _builder.Insert(0, " and");
         }
 
         _builder.Insert(0, integral == 1 ? " dollar" : " dollars");
-        ConvertInternal(integral);
+        ConvertInteger(integral);
 
-        if (number < 0) _builder.Insert(0, "minus");
+        if (money < 0) _builder.Insert(0, "minus");
 
         return _builder.ToString().Trim();
     }
 
     /// <summary>
-    /// Converts and appends the internal representation of an integer number to the StringBuilder.
+    /// Converts and appends the representation of an integer number to the StringBuilder.
     /// </summary>
     /// <param name="number">The number to convert and append.</param>
     /// <exception cref="InvalidOperationException">Thrown if the StringBuilder is not initialized.</exception>
-    private void ConvertInternal(int number)
+    private void ConvertInteger(int number)
     {
         if (_builder is null) throw new InvalidOperationException("Initialize StringBuilder first");
 
