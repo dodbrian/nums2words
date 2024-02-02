@@ -1,0 +1,17 @@
+### Convert valid number
+
+POST https://localhost:7294/api/conversions
+Content-Type: application/json
+
+{
+  "amount": "23 456,58"
+}
+
+### Convert invalid number
+
+POST https://localhost:7294/api/conversions
+Content-Type: application/json
+
+{
+  "amount": "23-456,58"
+}
