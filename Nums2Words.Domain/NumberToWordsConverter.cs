@@ -41,12 +41,20 @@ public class NumberToWordsConverter
 
     private StringBuilder? _builder;
 
+    /// <summary>
+    /// Converts a decimal number to its textual representation in words.
+    /// </summary>
+    /// <param name="number">The decimal number to convert.</param>
+    /// <returns>The textual representation of the number in words.</returns>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown if the absolute value of the number is higher than 999,999,999.99.
+    /// </exception>
     public string Convert(decimal number)
     {
         var absoluteNumber = Math.Abs(number);
 
         if (absoluteNumber > 999_999_999.99m)
-            throw new InvalidOperationException("The absolute value should not be higher than 999 999 999,99");
+            throw new InvalidOperationException("The absolute value should not be higher than 999,999,999.99");
 
         var integral = (int)absoluteNumber;
         var fractional = (int)((absoluteNumber - integral) * 100);
@@ -68,6 +76,11 @@ public class NumberToWordsConverter
         return _builder.ToString().Trim();
     }
 
+    /// <summary>
+    /// Converts and appends the internal representation of an integer number to the StringBuilder.
+    /// </summary>
+    /// <param name="number">The number to convert and append.</param>
+    /// <exception cref="InvalidOperationException">Thrown if the StringBuilder is not initialized.</exception>
     private void ConvertInternal(int number)
     {
         if (_builder is null) throw new InvalidOperationException("Initialize StringBuilder first");
@@ -101,6 +114,11 @@ public class NumberToWordsConverter
         }
     }
 
+    /// <summary>
+    /// Appends the word representation of a number to the internal StringBuilder.
+    /// </summary>
+    /// <param name="number">The number to convert and append.</param>
+    /// <exception cref="InvalidOperationException">Thrown if the StringBuilder is not initialized.</exception>
     private void AppendWord(int number)
     {
         if (_builder is null) throw new InvalidOperationException("Initialize StringBuilder first");
@@ -123,6 +141,11 @@ public class NumberToWordsConverter
         _builder.Insert(0, ' ');
     }
 
+    /// <summary>
+    /// Gets the triplets of a number.
+    /// </summary>
+    /// <param name="number">The number to extract triplets from.</param>
+    /// <returns>An enumerable of tuples representing the triplets.</returns>
     private static IEnumerable<(int Low, int High)> GetTriplets(int number)
     {
         var current = number;

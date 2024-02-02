@@ -44,6 +44,6 @@ public class NumberToWordsConverterTests
         // Assert
         act.Should()
             .Throw<InvalidOperationException>()
-            .WithMessage("The absolute value should not be higher than 999 999 999,99");
+            .WithMessage("The absolute value should not be higher than 999,999,999.99");
     }
 }
