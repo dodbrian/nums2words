@@ -1,4 +1,4 @@
-# UrlShortener
+# Nums2Words Converter
 
 ## Installation using Docker
 
